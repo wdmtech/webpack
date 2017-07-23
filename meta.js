@@ -44,6 +44,22 @@ module.exports = {
       "type": "confirm",
       "message": "Install vue-router?"
     },
+    "feathers": {
+      "type": "confirm",
+      "message": "Install feathers client with feathers-vuex? (requires vuex - included)"
+    },
+    "directives": {
+      "type": "confirm",
+      "message": "Install default directives?"
+    },
+    "mixins": {
+      "type": "confirm",
+      "message": "Install default mixins?"
+    },
+    "filters": {
+      "type": "confirm",
+      "message": "Install default filters?"
+    },
     "lint": {
       "type": "confirm",
       "message": "Use ESLint to lint your code?"
@@ -86,7 +102,12 @@ module.exports = {
     "test/unit/**/*": "unit",
     "build/webpack.test.conf.js": "unit",
     "test/e2e/**/*": "e2e",
-    "src/router/**/*": "router"
+    "src/router/**/*": "router",
+    "src/api/**/*": "feathers",
+    "src/store/**/*": "feathers",
+    "src/filters/**/*": "filters",
+    "src/mixins/**/*": "mixins",
+    "src/directives/**/*": "directives"
   },
   "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

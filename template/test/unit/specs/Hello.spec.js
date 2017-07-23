@@ -1,11 +1,11 @@
 import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Hello from '@/components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Home from '@/components/Home'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-describe('Hello.vue', () => {
+describe('Home.vue', () => {
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(Hello){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    const Constructor = Vue.extend(Home){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     const vm = new Constructor().$mount(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .to.equal('Welcome to Your Vue.js App'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    expect(vm.$el.querySelector('h1.title').textContent)
+      .to.equal('Welcome!'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
