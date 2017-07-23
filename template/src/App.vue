@@ -1,14 +1,18 @@
 <template>
   <div id="app">
+    <navbar :user="user" @logout="logout"></navbar>
     {{#router}}
     <router-view></router-view>
     {{else}}
     <home></home>
     {{/router}}
+    <footer-component></footer-component>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import FooterComponent from '@/components/Footer'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{#unless router}}
 import Home from '@/components/Home'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
@@ -18,17 +22,29 @@ export default {
   name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
   components: {
     Home{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    Navbar,
+    FooterComponent
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}},
+  components: {
+    Navbar,
+    FooterComponent
+  },
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    authProvider () {
+      if (this.user && this.user.facebook) return 'facebook'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      if (this.user && this.user.google) return 'google'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      if (this.user && this.user.github) return 'github'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }
   },
   methods: {
     ...mapActions('auth', ['authenticate', 'logout'])
   },
   mounted () {
-    this.authenticate({ strategy: 'facebook' })
+    this.authenticate()
       .then(result => {
         console.log('authed!'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        console.log(result){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
         return result
       })
       .catch(error => console.log(error))

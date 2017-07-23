@@ -123,7 +123,8 @@
             </div>
           </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable">
+        <!-- Log in with local or Oauth provider -->
+        <div v-if="!user" class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">
             Log in
           </div>
@@ -134,28 +135,31 @@
                   <div class="level-item">
                     <p>
                       <strong>Log in with Facebook</strong>
+                      <span class="icon is-small"><i class="fa fa-facebook-official"></i></span>
                     </p>
                   </div>
                 </div>
               </div>
             </a>
-            <a class="navbar-item " href="http://bulma.io/extensions/">
+            <a class="navbar-item " href="//localhost:3030/auth/google">
               <div class="level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
                     <p>
                       <strong>Log in with Google</strong>
+                      <span class="icon is-small"><i class="fa fa-google"></i></span>
                     </p>
                   </div>
                 </div>
               </div>
             </a>
-            <a class="navbar-item " href="http://bulma.io/extensions/">
+            <a class="navbar-item " href="//localhost:3030/auth/github">
               <div class="level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
                     <p>
                       <strong>Log in with Github</strong>
+                      <span class="icon is-small"><i class="fa fa-github"></i></span>
                     </p>
                   </div>
                 </div>
@@ -163,6 +167,10 @@
             </a>
           </div>
         </div>
+        <!-- log out button -->
+        <a class="navbar-item" href="/" @click="$emit('logout')" v-else>
+          Log out from {{ provider ? provider : '' | Capitalize }}<span class="icon is-small"><i class="fa fa-logout"></i></span>
+        </a>
       </div>
       <div class="navbar-end">
         <a class="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
@@ -204,6 +212,7 @@
 
 <script>
   export default {
-    name: 'navbar'
+    name: 'navbar',
+    props: { user: undefined }
   }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
