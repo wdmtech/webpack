@@ -169,7 +169,7 @@
         </div>
         <!-- log out button -->
         <a class="navbar-item" href="/" @click="$emit('logout')" v-else>
-          Log out from {{ provider ? provider : '' | Capitalize }}<span class="icon is-small"><i class="fa fa-logout"></i></span>
+          Log out from \{{ authProvider ? authProvider : '' | capitalize }}<span class="icon is-small"><i class="fa fa-sign-out"></i></span>
         </a>
       </div>
       <div class="navbar-end">
@@ -213,6 +213,9 @@
 <script>
   export default {
     name: 'navbar',
-    props: { user: undefined }
+    props: {
+      user: undefined,
+      authProvider: undefined{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }
   }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>

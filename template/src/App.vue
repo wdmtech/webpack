@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navbar :user="user" @logout="logout"></navbar>
+    <navbar :user="user" :authProvider="authProvider" @logout="logout"></navbar>
     {{#router}}
-    <router-view></router-view>
+    <router-view :user="user" :authProvider="authProvider" ></router-view>
     {{else}}
     <home></home>
     {{/router}}

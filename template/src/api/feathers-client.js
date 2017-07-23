@@ -21,7 +21,10 @@ const feathersClient = feathers()
   .configure(feathersVuex(store, {
     idField: '_id',
     auth: {
-      userService: '/users'
+      userService: '/users',
+      getters: {
+        provider: 'wtf'
+      }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
     }
   })){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
