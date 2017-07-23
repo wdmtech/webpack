@@ -13,11 +13,26 @@
 import Home from '@/components/Home'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{/unless}}
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
   components: {
     Home{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}},
+  computed: {
+    ...mapState('auth', ['user'])
+  },
+  methods: {
+    ...mapActions('auth', ['authenticate', 'logout'])
+  },
+  mounted () {
+    this.authenticate({ strategy: 'facebook' })
+      .then(result => {
+        console.log('authed!'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        return result
+      })
+      .catch(error => console.log(error))
+  }
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 

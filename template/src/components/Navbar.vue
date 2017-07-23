@@ -26,7 +26,7 @@
 
     <div id="navMenuExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item " href="http://bulma.io/">
+        <a class="navbar-item " href="/">
           Home
         </a>
         <div class="navbar-item has-dropdown is-hoverable">
@@ -37,24 +37,24 @@
             <a class="navbar-item " href="/documentation/overview/start/">
               Overview
             </a>
-            <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+            <a class="navbar-item " target="_blank" href="http://bulma.io/documentation/modifiers/syntax/">
               Modifiers
             </a>
-            <a class="navbar-item " href="http://bulma.io/documentation/grid/columns/">
+            <a class="navbar-item " target="_blank" href="http://bulma.io/documentation/grid/columns/">
               Grid
             </a>
-            <a class="navbar-item " href="http://bulma.io/documentation/form/general/">
+            <a class="navbar-item " target="_blank" href="http://bulma.io/documentation/form/general/">
               Form
             </a>
-            <a class="navbar-item " href="http://bulma.io/documentation/elements/box/">
+            <a class="navbar-item " target="_blank" href="http://bulma.io/documentation/elements/box/">
               Elements
             </a>
 
-            <a class="navbar-item is-active" href="http://bulma.io/documentation/components/breadcrumb/">
+            <a class="navbar-item is-active" target="_blank" href="http://bulma.io/documentation/components/breadcrumb/">
               Components
             </a>
 
-            <a class="navbar-item " href="http://bulma.io/documentation/layout/container/">
+            <a class="navbar-item " target="_blank" href="http://bulma.io/documentation/layout/container/">
               Layout
             </a>
             <hr class="navbar-divider">
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link " href="http://bulma.io/blog/">
+          <a class="navbar-link " target="_blank" href="http://bulma.io/blog/">
             Blog
           </a>
           <div id="blogDropdown" class="navbar-dropdown " data-style="width: 18rem;">
@@ -125,25 +125,38 @@
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">
-            More
+            Log in
           </div>
           <div id="moreDropdown" class="navbar-dropdown ">
+            <a class="navbar-item " href="//localhost:3030/auth/facebook">
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p>
+                      <strong>Log in with Facebook</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
             <a class="navbar-item " href="http://bulma.io/extensions/">
               <div class="level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
                     <p>
-                      <strong>Extensions</strong>
-                      <br>
-                      <small>Side projects to enhance Bulma</small>
+                      <strong>Log in with Google</strong>
                     </p>
                   </div>
                 </div>
-                <div class="level-right">
+              </div>
+            </a>
+            <a class="navbar-item " href="http://bulma.io/extensions/">
+              <div class="level is-mobile">
+                <div class="level-left">
                   <div class="level-item">
-                  <span class="icon has-text-info">
-                    <i class="fa fa-plug"></i>
-                  </span>
+                    <p>
+                      <strong>Log in with Github</strong>
+                    </p>
                   </div>
                 </div>
               </div>

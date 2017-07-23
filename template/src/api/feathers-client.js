@@ -15,18 +15,17 @@ export const socket = io('http://localhost:3030', { transports: ['websocket'] })
 const feathersClient = feathers()
   .configure(hooks())
   .configure(socketio(socket))
-  .configure(auth({ storage: window.localStorage }))
+  .configure(auth({ cookie: 'feathers-jwt' }))
   .configure(rx(RxJS, { idField: '_id' }))
   // Register feathers-vuex by passing the store and options
   .configure(feathersVuex(store, {
     idField: '_id',
     auth: {
-      userService: 'users'
+      userService: '/users'
     }
   })){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 // For every service created, a Vuex store module may be created.
-
-feathersClient.service('users'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+feathersClient.service('/users'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default feathersClient{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
