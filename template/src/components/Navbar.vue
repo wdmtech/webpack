@@ -165,11 +165,23 @@
                 </div>
               </div>
             </a>
+            <a class="navbar-item " href="//localhost:3030/auth/local" @click="$emit('login')">
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p>
+                      <strong>Log in with username and password</strong>
+                      <span class="icon is-small"><i class="fa fa-user"></i></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
         <!-- log out button -->
         <a class="navbar-item" href="/" @click="$emit('logout')" v-else>
-          Log out from \{{ authProvider ? authProvider : '' | capitalize }}<span class="icon is-small"><i class="fa fa-sign-out"></i></span>
+          Log out <span class="icon is-small"><i class="fa fa-sign-out"></i></span>
         </a>
       </div>
       <div class="navbar-end">
@@ -216,6 +228,6 @@
     props: {
       user: undefined,
       authProvider: undefined{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>

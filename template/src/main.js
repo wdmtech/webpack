@@ -4,27 +4,7 @@
 {{/if_eq}}
 import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-{{#router}}
-import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.getters.isLoggedIn) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
-      next()
-    }
-  } else {
-    next() // make sure to always call next()!
-  }
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-
-{{/router}}
 {{#filters}}
 import './filters'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/filters}}
@@ -38,6 +18,28 @@ import './directives'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import store from './store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import './api/feathers-client'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/feathers}}
+
+{{#router}}
+import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.getters.isLoggedIn) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+      }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    } else {
+      next(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }
+  } else {
+    next(){{#if_eq lintConfig "airbnb"}};{{/if_eq}} // make sure to always call next()!
+  }
+}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+{{/router}}
 
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 

@@ -7,5 +7,5 @@ Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 export default new Router({
   routes,
   mode: 'history',
-  linkExactActiveClass: 'is-active'
+  linkExactActiveClass: 'is-active'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}

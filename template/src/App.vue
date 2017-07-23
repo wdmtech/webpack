@@ -17,38 +17,42 @@ import FooterComponent from '@/components/Footer'{{#if_eq lintConfig "airbnb"}};
 import Home from '@/components/Home'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{/unless}}
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
 export default {
   name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
   components: {
     Home{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
     Navbar,
     FooterComponent
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}},
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
   components: {
     Navbar,
-    FooterComponent
+    FooterComponent{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   computed: {
     ...mapState('auth', ['user']),
-    authProvider () {
+    authProvider{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
       if (this.user && this.user.facebook) return 'facebook'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
       if (this.user && this.user.google) return 'google'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
       if (this.user && this.user.github) return 'github'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }
+
+      return 'unknown'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   methods: {
-    ...mapActions('auth', ['authenticate', 'logout'])
+    ...mapActions('auth', ['authenticate', 'logout']){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
-  mounted () {
+  mounted{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     this.authenticate()
-      .then(result => {
+      .then((result) => {
         console.log('authed!'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
         console.log(result){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-        return result
+
+        return result{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
       })
-      .catch(error => console.log(error))
-  }
+      .catch(error => console.log(error)){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
