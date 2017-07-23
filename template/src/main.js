@@ -40,7 +40,6 @@ router.beforeEach((to, from, next) => {
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{/router}}
-
 Vue.config.productionTip = false{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{#feathers}}
