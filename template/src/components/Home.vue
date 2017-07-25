@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <section class="section">
-        <h1 class="title">\{{ msg }}, \{{ user[authProvider] ? user[authProvider].profile.displayName : '' }}</h1>
-      </section>
+      <h1 class="title">\{{ msg }}, \{{ user[authProvider] ? user[authProvider].profile.displayName : '' }}!</h1>
     </div>
   </div>
 </template>

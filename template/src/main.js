@@ -3,6 +3,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 {{/if_eq}}
 import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import ElementUI from 'element-ui'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import locale from 'element-ui/lib/locale/lang/en'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import { VTooltip } from 'v-tooltip'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
 import App from './App'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{#filters}}
@@ -13,6 +17,7 @@ import './mixins'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 {{/mixins}}
 {{#directives}}
 import './directives'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
 {{/directives}}
 {{#feathers}}
 import store from './store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
@@ -21,6 +26,9 @@ import './api/feathers-client'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 {{#router}}
 import router from './router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+Vue.use('tooltip', VTooltip){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(ElementUI, { locale }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {

@@ -1,11 +1,17 @@
 <template>
   <div id="app">
     <navbar :user="user" :authProvider="authProvider" @logout="logout"></navbar>
-    {{#router}}
-    <router-view :user="user" :authProvider="authProvider" ></router-view>
-    {{else}}
-    <home></home>
-    {{/router}}
+    <section class="hero is-medium is-dark is-bold">
+      <div class="hero-body">
+        <div class="container">
+          {{#router}}
+          <router-view :user="user" :authProvider="authProvider" ></router-view>
+          {{else}}
+          <home></home>
+          {{/router}}
+        </div>
+      </div>
+    </section>
     <footer-component></footer-component>
   </div>
 </template>
@@ -59,6 +65,7 @@ export default {
 <style lang="sass" type="text/sass">
   @import "~bulma"
   @import "~font-awesome/css/font-awesome.css"
+  @import "~element-ui/lib/theme-default/index.css"
 
   nav a.navbar-item.is-active, .navbar-link.is-active
     color: $primary
