@@ -5,7 +5,7 @@
       <div class="hero-body">
         <div class="container">
           {{#router}}
-          <router-view :user="user" :authProvider="authProvider" ></router-view>
+          <router-view :user="user" :authProvider="authProvider" @authenticate="login"></router-view>
           {{else}}
           <home></home>
           {{/router}}
@@ -43,28 +43,30 @@ export default {
       if (this.user && this.user.google) return 'google'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
       if (this.user && this.user.github) return 'github'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
-      return 'unknown'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      return 'local'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   methods: {
+    login{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}(options = {}) {
+      this.authenticate(options)
+        .then(() => {
+          this.$router.push('home'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        })
+        .catch(error => error){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    },
     ...mapActions('auth', ['authenticate', 'logout']){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   mounted{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-    this.authenticate()
-      .then((result) => {
-        console.log('authed!'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-        console.log(result){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-
-        return result{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-      })
-      .catch(error => console.log(error)){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    this.login({}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
 <style lang="sass" type="text/sass">
+  $primary: #da00ab
   @import "~bulma"
   @import "~font-awesome/css/font-awesome.css"
+  @import "~animate.css/animate.css"
   @import "~element-ui/lib/theme-default/index.css"
 
   nav a.navbar-item.is-active, .navbar-link.is-active

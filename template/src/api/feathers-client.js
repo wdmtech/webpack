@@ -23,12 +23,16 @@ const feathersClient = feathers()
     auth: {
       userService: '/users',
       getters: {
-        provider: 'wtf'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+        provider{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+          return 'wtf'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
       }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
     }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   })){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 // For every service created, a Vuex store module may be created.
-feathersClient.service('/users'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+/* eslint-disable no-underscore-dangle */
+feathersClient.service('/users').vuex({ getters: { isLoggedIn: () => !!(store.state.auth.user && store.state.auth.user._id) } }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default feathersClient{{#if_eq lintConfig "airbnb"}};{{/if_eq}}

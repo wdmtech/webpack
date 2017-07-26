@@ -2,13 +2,7 @@
   <div>
     <div class="container">
       <h1 class="title animated fadeInUp">
-        <span v-if="isLoggedIn && authProvider !== 'local'">
-          \{{ msg }}, \{{ user[authProvider].profile.displayName }}!
-        </span>
-        <span v-if="isLoggedIn && authProvider === 'local'">
-          \{{ msg }}, \{{ user.firstName }}!
-        </span>
-        <span v-if="!isLoggedIn">Please sign in.</span>
+        \{{ msg }}, \{{ user && user[authProvider] ? user[authProvider].profile.displayName : '' }}!
       </h1>
     </div>
   </div>
@@ -16,7 +10,6 @@
 
 <script>
 // import mixins from '@/mixins'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import { mapGetters } from 'vuex'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default {
   // mixins: [mixins.facebookSDK],
@@ -25,13 +18,12 @@ export default {
     user: undefined,
     authProvider: undefined{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
-  computed: {
-    ...mapGetters('users', ['isLoggedIn']){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  },
   data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     return {
       msg: 'Welcome'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
     }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  },
+  mounted{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
   }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>

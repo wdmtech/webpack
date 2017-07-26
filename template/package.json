@@ -33,8 +33,9 @@
     "bulma": "^0.4.3",
     "vue2-dropzone": "^2.3.5",
     "v-tooltip": "^2.0.0-beta.8",
-    "element-ui": "^1.4.0"
-    },
+    "element-ui": "^1.4.0",
+    "animate.css": "^3.5.2"
+},
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",

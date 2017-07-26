@@ -1,35 +1,23 @@
 <template>
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="http://bulma.io">
-        <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-      </a>
 
-      <a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-      <span class="icon" style="color: #333;">
-        <i class="fa fa-github"></i>
-      </span>
-      </a>
-
-      <a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
-      <span class="icon" style="color: #55acee;">
-        <i class="fa fa-twitter"></i>
-      </span>
-      </a>
+      <a class="navbar-item">wdmtech/webpack</a>
 
       <div class="navbar-burger burger" data-target="navMenuExample">
         <span></span>
         <span></span>
         <span></span>
       </div>
+
     </div>
 
     <div id="navMenuExample" class="navbar-menu">
+
       <div class="navbar-start">
-        <a class="navbar-item " href="/">
-          Home
-        </a>
+        <router-link class="navbar-item" to="home">Home</router-link>
       </div>
+
       <div class="navbar-end">
         <!-- Log in with local or Oauth provider -->
         <div v-if="!user" class="navbar-item has-dropdown is-hoverable is-transparent">
@@ -73,7 +61,7 @@
                 </div>
               </div>
             </a>
-            <a class="navbar-item " href="//localhost:3030/auth/local" @click="$emit('login')">
+            <router-link class="navbar-item" to="login">
               <div class="level is-mobile">
                 <div class="level-left">
                   <div class="level-item">
@@ -84,17 +72,20 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
+
         <!-- name -->
-        <a class="navbar-item" href="/" v-if="user">
-          \{{ user[authProvider].profile.displayName }}
+        <a class="navbar-item" v-if="user">
+          \{{ user && user[authProvider] ? user[authProvider].profile.displayName : user.email }}
         </a>
+
         <!-- log out button -->
-        <a class="navbar-item" href="/" @click="$emit('logout')" v-if="user">
+        <a class="navbar-item" @click="$emit('logout')" v-if="user">
           Log out
         </a>
+
       </div>
     </div>
   </nav>
