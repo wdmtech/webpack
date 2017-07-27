@@ -1,137 +1,78 @@
 <template>
-  <div>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Email</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <input class="input" type="email" placeholder="Email" v-model="email">
-            <span class="icon is-small is-left">
-          <i class="fa fa-user"></i>
-        </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control is-expanded has-icons-left has-icons-right">
-            <input class="input is-success" type="password" placeholder="Password" v-model="password">
-            <span class="icon is-small is-left">
+  <section>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input" :class="{ 'is-success': !$v.email.$invalid, 'is-error': $v.email.$invalid }" type="email" placeholder="Email" v-model="email" @keyup.enter="register">
+        <span class="icon is-small is-left">
           <i class="fa fa-envelope"></i>
         </span>
-            <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input" :class="{ 'is-success': !$v.password.$invalid, 'is-error': $v.password.$invalid }" type="password" placeholder="Password" v-model="password" @keyup.enter="register">
+        <span class="icon is-small is-left">
+          <i class="fa fa-lock"></i>
         </span>
-          </p>
-        </div>
-      </div>
+      </p>
     </div>
-
-    <div class="field is-horizontal" v-if="show.phone">
-      <div class="field-label"></div>
-      <div class="field-body">
-        <div class="field is-expanded">
-          <div class="field has-addons">
-            <p class="control">
-              <a class="button is-static">
-                +44
-              </a>
-            </p>
-            <p class="control is-expanded">
-              <input class="input" type="tel" placeholder="Your phone number" v-model="phone">
-            </p>
-          </div>
-          <p class="help">Do not enter the first zero</p>
-        </div>
-      </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input" :class="{ 'is-success': $v.repeatPassword.sameAsPassword && !$v.repeatPassword.$invalid }" type="password" placeholder="Confirm password" v-model="repeatPassword" @keyup.enter="register">
+        <span class="icon is-small is-left">
+          <i class="fa fa-lock"></i>
+        </span>
+      </p>
     </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Department</label>
-      </div>
-      <div class="field-body">
-        <div class="field is-narrow">
-          <div class="control">
-            <div class="select is-fullwidth">
-              <select>
-                <option>Business development</option>
-                <option>Marketing</option>
-                <option>Sales</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="field">
+      <p class="control">
+        <button
+          class="button is-primary is-outlined is-pulled-right"
+          @click="register"
+          :disabled="$v.$invalid">
+          Register
+        </button>
+      </p>
     </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label">
-        <label class="label">Already a member?</label>
-      </div>
-      <div class="field-body">
-        <div class="field is-narrow">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="member">
-              Yes
-            </label>
-            <label class="radio">
-              <input type="radio" name="member">
-              No
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Subject</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input is-danger" type="text" placeholder="e.g. Partnership opportunity">
-          </div>
-          <p class="help is-danger">
-            This field is required
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Question</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label">
-        <!-- Left empty for spacing -->
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary">
-              Send message
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
-  export default {
-  }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import { validationMixin } from 'vuelidate'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
+export default {
+  name: 'signup',
+  mixins: [validationMixin],
+  methods: {
+    register{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+      const fields = {
+        email: this.email,
+        password: this.password{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+      }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      this.$emit('register', fields){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  },
+  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+    return {
+      email: '',
+      password: '',
+      repeatPassword: ''{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  },
+  validations: {
+    email: {
+      email,
+      required{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    },
+    password: {
+      required,
+      minLength: minLength(6){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    },
+    repeatPassword: {
+      required,
+      sameAsPassword: sameAs('password'){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>

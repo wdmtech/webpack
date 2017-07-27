@@ -3,6 +3,7 @@ import SignUp from '@/components/forms/SignUp'{{#if_eq lintConfig "airbnb"}};{{/
 import Contact from '@/components/Contact'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import Welcome from '@/components/Welcome'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 import Login from '@/components/Login'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Profile from '@/components/Profile'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default [
   {
@@ -22,6 +23,11 @@ export default [
     path: '/signup',
     name: 'signup',
     component: SignUp{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   {
     path: '/login',

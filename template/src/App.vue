@@ -5,7 +5,7 @@
       <div class="hero-body">
         <div class="container">
           {{#router}}
-          <router-view :user="user" :authProvider="authProvider" @authenticate="login"></router-view>
+          <router-view :user="user" :authProvider="authProvider" @authenticate="login" @register="register"></router-view>
           {{else}}
           <home></home>
           {{/router}}
@@ -54,7 +54,10 @@ export default {
         })
         .catch(error => error){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     },
-    ...mapActions('auth', ['authenticate', 'logout']){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    ...mapActions('auth', ['authenticate', 'logout']),
+    ...mapActions('users', {
+      register: 'create'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   mounted{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     this.login({}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
@@ -63,11 +66,20 @@ export default {
 </script>
 
 <style lang="sass" type="text/sass">
-  $primary: #da00ab
+  $primary: #86da38
   @import "~bulma"
   @import "~font-awesome/css/font-awesome.css"
   @import "~animate.css/animate.css"
   @import "~element-ui/lib/theme-default/index.css"
+
+  .muted
+    opacity: .5
+
+  input.input
+    background: rgba(255, 255, 255, 0.05)
+    color: #fff
+    &::placeholder
+      color: #fff
 
   nav a.navbar-item.is-active, .navbar-link.is-active
     color: $primary

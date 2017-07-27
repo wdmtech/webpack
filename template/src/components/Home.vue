@@ -8,7 +8,7 @@
         <span v-if="isLoggedIn && authProvider === 'local'">
           \{{ msg }}, \{{ user.firstName }}!
         </span>
-        <span v-if="!isLoggedIn">Please sign in.</span>
+        <span v-if="!isLoggedIn">Please sign in or <router-link to="signup" class="muted">sign up!</router-link></span>
       </h1>
     </div>
   </div>

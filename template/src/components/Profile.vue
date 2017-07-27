@@ -1,5 +1,7 @@
 <template>
   <section>
+    <h1 class="title">Log in</h1>
+    <router-link>Not registered yet? </router-link>
     <div class="field">
       <p class="control has-icons-left">
         <input class="input" type="email" placeholder="Email" v-model="email">
@@ -25,20 +27,17 @@
         </button>
       </p>
     </div>
-    <div>
-      <router-link to="signup">Not registered?</router-link>
-    </div>
   </section>
 </template>
 
 <script>
-  export default {
-    name: 'login',
-    data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
-      return {
-        email: '',
-        password: ''{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-      }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+export default {
+  name: 'profile',
+  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+    return {
+      email: '',
+      password: ''{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>

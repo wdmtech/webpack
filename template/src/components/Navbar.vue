@@ -4,7 +4,7 @@
 
       <a class="navbar-item">wdmtech/webpack</a>
 
-      <div class="navbar-burger burger" data-target="navMenuExample">
+      <div class="navbar-burger burger">
         <span></span>
         <span></span>
         <span></span>
@@ -12,7 +12,7 @@
 
     </div>
 
-    <div id="navMenuExample" class="navbar-menu">
+    <div class="navbar-menu is-active">
 
       <div class="navbar-start">
         <router-link class="navbar-item" to="home">Home</router-link>
